@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 const PokemonImage = ({name, image, type, height, weight}) => {
 
     return (

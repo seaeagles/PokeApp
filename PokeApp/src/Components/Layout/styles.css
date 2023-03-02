@@ -1,0 +1,32 @@
+.pokeholder {
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px, 0.5fr));
+    grid-template-rows: auto;
+    grid-gap:2rem;
+
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; */
+}
+
+.details {
+    background-color: #FCEEC8;
+    padding: 1.5rem 0.2rem;
+    margin: 0.3rem;
+    border: 1px solid #efefef;
+    border-radius: 2rem;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
+  }
+
+.header {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #FFCB05;
+    text-shadow: 0 0 2px #3D7DCA;
+}
