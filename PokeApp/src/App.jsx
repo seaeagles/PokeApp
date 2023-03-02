@@ -1,34 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useEffect, useState } from 'react'
+import PokemonImage from './Components/PokemonImage';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [allePokemon, setAllePokemon] = useState([]);
+  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const returnAllePokemon = async () => {
+    const res = await fetch(loadPoke)
+    const data = await res.json()
+    setLoadPoke(data.next)
+
+    function createPokemans(result) {
+      result.forEach(async (pokemon) => {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        const data = await res.json();
+        setAllePokemon(currentList => [...currentList, data])
+      });
+  }
+  createPokemans(data.results)
+  await console.log(allePokemon)
+}
+useEffect(() => {
+  returnAllePokemon()
+}, [])
+
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-main">
+      <h1>Poke</h1>
+
+      <div className="pokeholder">
+        {allePokemon.map((pokemon, index) => 
+            <PokemonImage
+            id = {pokemon.id}
+            name = {pokemon.name}
+            image = {pokemon.sprites.other.dream_world.front_default}
+
+            />
+        )}
+      <button onClick={()=>returnAllePokemon()}>More Pokemon</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
-}
+  }
+
 
 export default App
