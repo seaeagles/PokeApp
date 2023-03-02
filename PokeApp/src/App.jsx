@@ -4,7 +4,7 @@ import './App.css'
 
 function App() {
   const [allePokemon, setAllePokemon] = useState([]);
-  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=10')
   const returnAllePokemon = async () => {
     const res = await fetch(loadPoke)
     const data = await res.json()
@@ -30,14 +30,15 @@ useEffect(() => {
       <h1>Poke</h1>
 
       <div className="pokeholder">
+          <div className="all-container">
         {allePokemon.map((pokemon, index) => 
             <PokemonImage
-            id = {pokemon.id}
             name = {pokemon.name}
             image = {pokemon.sprites.other.dream_world.front_default}
-
+          
             />
         )}
+          </div>
       <button onClick={()=>returnAllePokemon()}>More Pokemon</button>
       </div>
     </div>
