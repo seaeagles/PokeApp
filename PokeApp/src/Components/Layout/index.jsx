@@ -5,7 +5,7 @@ import './styles.css'
 
 export function Layout () {
   const [allePokemon, setAllePokemon] = useState([]);
-  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=15')
+  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=1')
 
   const returnAllePokemon = async () => {
     const res = await fetch(loadPoke)
@@ -22,9 +22,9 @@ export function Layout () {
   createPokemans(data.results)
   await console.log(allePokemon)
 }
-useEffect(() => {
-  returnAllePokemon()
-}, [])
+// useEffect(() => {
+//   returnAllePokemon()
+// }, [])
 
         return (
             <div className="app-main">
