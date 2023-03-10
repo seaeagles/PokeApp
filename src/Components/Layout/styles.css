@@ -1,0 +1,59 @@
+.pokeholder {
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 0.2fr));
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+    gap: 1rem;
+    /* min-height: 100vh; */
+}
+
+.details {
+    background-color: #C8D6FC;
+    padding: 1.5rem 0.2rem;
+    margin: 0.3rem;
+    border: 1px solid #efefef;
+    border-radius: 2rem;
+    min-width: auto;
+    min-height: 50vh;
+    text-align: center;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
+  }
+.details img {
+  height: 50%;
+  width: 50%;
+  object-fit: contain;
+}
+.details h2 {
+  margin: .2rem;
+  font-size: 1rem;
+}
+.details h3 {
+  font-size: 1rem;
+}
+.details h4 {
+  font-size: .8em;
+  
+}
+
+
+.header {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #FFCB05;
+    text-shadow: 0 0 2px #3D7DCA;
+}
+
+.btns {
+    outline: none;
+      border: none;
+      width: 150px;
+      padding: 0.3rem 0;
+      margin: 1rem;
+      font-size: 17px;
+      font-weight: bold;
+      color: white;
+      background-color: #b74555;
+      border-radius: 8px;
+      height: 150px;
+  }
