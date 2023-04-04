@@ -5,23 +5,48 @@ import './styles.css'
 
 export function Layout () {
   const [allePokemon, setAllePokemon] = useState([]);
-  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=6')
+  // const [randoPoke, setRando] = useState([]);
+  const [loadPoke, setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=1')
 
   const returnAllePokemon = async () => {
     const res = await fetch(loadPoke)
     const data = await res.json()
     setLoadPoke(data.next)
 
-    function createPokemans(result) {
-      result.forEach(async (pokemon) => {
+    const createPokemans = async (result) => {
+      for (const pokemon of result) {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
         const data = await res.json();
-        setAllePokemon(currentList => [...currentList, data])
-      });
+        if (!allePokemon.some(p => p.id === data.id)) { // check if Pokemon already exists
+          setAllePokemon(currentList => [...currentList, data])
+        }
+      };
+      console.log(allePokemon)
+    }
+    await createPokemans(data.results)
   }
-  createPokemans(data.results)
-  await console.log(allePokemon)
-}
+
+  // useEffect(() => {
+  //   returnAllePokemon();
+  // }, [])
+
+  // const returnRandoPoke = async () => {
+  //   const res = await fetch(loadPoke)
+  //   const data = await res.json()
+  //   setLoadPoke(data.next)
+
+  //   function createRando(result) {
+  //     result.forEach(async (pokemon) => {
+  //       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+  //       const data = await res.json();
+  //       setRando(pokemon)
+  //     })
+
+  //   }
+  //   createRando(data.results)
+  //   await console.log(randoPoke)
+
+  // }
 // useEffect(() => {
 //   returnAllePokemon()
 // }, [])
@@ -44,8 +69,9 @@ export function Layout () {
                     )
                   }
                   </div>
-                  <button className="btns" onClick={()=>returnAllePokemon()}>More Pokemon
+                  <button className="btns" onClick={() => returnAllePokemon()}>More Pokemon
                 </button>
+                <button className="btns" onClick={() => returnRandoPoke()}>Random</button>
               </div>
             </div>
             )
